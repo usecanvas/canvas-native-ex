@@ -1,0 +1,2 @@
+defmodule CanvasNative do
+end
