@@ -5,6 +5,7 @@ defmodule CanvasNative.Mixfile do
     [app: :canvas_native,
      version: "0.1.0",
      elixir: "~> 1.3",
+     aliases: aliases,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -27,6 +28,12 @@ defmodule CanvasNative.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:dialyxir, "~> 0.3.5", only: [:dev]}]
+    [{:credo, "~> 0.4", only: [:dev, :test]},
+     {:dialyxir, "~> 0.3.5", only: [:dev, :test]}]
   end
+
+  defp aliases do
+    [test: ["test", "credo --strict", "dialyzer"]]
+  end
+
 end
