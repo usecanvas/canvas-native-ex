@@ -14,6 +14,12 @@ defmodule CanvasNative.Type do
       use Constructor
 
       @doc """
+      Name for this type.
+      """
+      @spec type_name :: String.t
+      def type_name, do: @type_name
+
+      @doc """
       Match a native string against `@native_pattern`, returning the named
       captures.
       """
