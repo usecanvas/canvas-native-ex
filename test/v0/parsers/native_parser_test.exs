@@ -1,4 +1,4 @@
-alias CanvasNative.V0.{NativeParser, ParagraphType}
+alias CanvasNative.V0.{NativeParser, HeadingType, ParagraphType}
 
 defmodule CanvasNative.V0.NativeParserTest do
   use ExUnit.Case
@@ -8,8 +8,10 @@ defmodule CanvasNative.V0.NativeParserTest do
 
 
   test "parses a string of v0 into a map of v0 lines" do
-    result = parse("Foo\nBar")
+    result = parse("# Heading\nParagraph")
     assert match?(
-      [%ParagraphType{content: "Foo"}, %ParagraphType{content: "Bar"}], result)
+      [%HeadingType{content: "Heading"},
+       %ParagraphType{content: "Paragraph"}],
+      result)
   end
 end

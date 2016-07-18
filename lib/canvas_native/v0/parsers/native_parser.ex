@@ -1,4 +1,4 @@
-alias CanvasNative.V0.ParagraphType, as: Paragraph
+alias CanvasNative.V0.{HeadingType, ParagraphType}
 
 defmodule CanvasNative.V0.NativeParser do
   @moduledoc """
@@ -24,7 +24,7 @@ defmodule CanvasNative.V0.NativeParser do
   # Parse a single v0 native line into a line map.
   @spec parse_line(String.t) :: map
   defp parse_line(line) do
-    [Paragraph]
+    [HeadingType, ParagraphType]
     |> Enum.reduce_while(nil, try_match(line))
   end
 

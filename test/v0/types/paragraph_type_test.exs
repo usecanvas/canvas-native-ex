@@ -1,7 +1,7 @@
 alias CanvasNative.V0.ParagraphType
 
 defmodule CanvasNative.V0.ParagraphTypeTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest ParagraphType
 
   import ParagraphType

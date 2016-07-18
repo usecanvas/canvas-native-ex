@@ -24,13 +24,19 @@ defmodule CanvasNative.Type do
             result
             |> Map.put(:source, native)
             |> Map.put(:type, @type_name)
+            |> after_match_native
             |> new
           nil ->
             nil
         end
       end
 
+      # Manipulate the match map before it is turned into a struct
+      @spec after_match_native(%{source: String.t, type: String.t}) :: map
+      defp after_match_native(map), do: map
+
       defoverridable(match_native: 1)
+      defoverridable(after_match_native: 1)
     end
   end
 end
