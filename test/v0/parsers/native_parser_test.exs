@@ -1,4 +1,5 @@
-alias CanvasNative.V0.{NativeParser, BlockquoteType, HeadingType, ParagraphType}
+alias CanvasNative.V0.{NativeParser, BlockquoteType, ChecklistType, HeadingType,
+                       ParagraphType}
 
 defmodule CanvasNative.V0.NativeParserTest do
   use ExUnit.Case
@@ -9,13 +10,15 @@ defmodule CanvasNative.V0.NativeParserTest do
 
   test "parses a string of v0 into a map of v0 lines" do
     result = parse """
+    #{wrap "checklist-item-2"}    - [x] Checklist
     #{wrap "blockquote-item"}> Blockquote
     # Heading
     Paragraph\
     """
 
     assert match?(
-      [%BlockquoteType{content: "Blockquote"},
+      [%ChecklistType{content: "Checklist"},
+       %BlockquoteType{content: "Blockquote"},
        %HeadingType{content: "Heading"},
        %ParagraphType{content: "Paragraph"}],
       result)

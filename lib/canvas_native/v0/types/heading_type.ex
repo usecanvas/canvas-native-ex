@@ -13,7 +13,7 @@ defmodule CanvasNative.V0.HeadingType do
 
   @type t :: %__MODULE__{level: 1..6, content: String.t, source: String.t,
                          type: String.t}
-  @native_pattern ~r/^(?<hashes>\#{1,6}) (?<content>.*)$/
+  @native_pattern ~r/^(?<hashes>\#{1,6}) (?<content>.*)$/i
   @type_name "heading"
 
   use Type
