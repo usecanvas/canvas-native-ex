@@ -1,6 +1,6 @@
 alias CanvasNative.V0.{NativeParser, BlockquoteType, ChecklistType, CodeType,
                        HeadingType, HorizontalRuleType, ImageType,
-                       LinkDefinitionType, ParagraphType}
+                       LinkDefinitionType, OrderedListType, ParagraphType}
 
 defmodule CanvasNative.V0.NativeParserTest do
   use ExUnit.Case
@@ -16,6 +16,7 @@ defmodule CanvasNative.V0.NativeParserTest do
     - - -
     #{wrap "code-ruby"}class Foo
     #{wrap "checklist-item-2"}    - [x] Checklist
+    #{wrap "ordered-list-item-2"}2. Foo
     #{wrap "blockquote-item"}> Blockquote
     # Heading
     Paragraph\
@@ -27,6 +28,7 @@ defmodule CanvasNative.V0.NativeParserTest do
        %HorizontalRuleType{content: "- - -"},
        %CodeType{content: "class Foo"},
        %ChecklistType{content: "Checklist"},
+       %OrderedListType{content: "Foo"},
        %BlockquoteType{content: "Blockquote"},
        %HeadingType{content: "Heading"},
        %ParagraphType{content: "Paragraph"}],
