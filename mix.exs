@@ -37,7 +37,7 @@ defmodule CanvasNative.Mixfile do
   end
 
   defp package do
-    [licenses: "MIT",
+    [licenses: ["MIT"],
      maintainers: ["Jonathan Clem <jonathan@usecanvas.com>"],
      links: %{"GitHub" => "https://github.com/usecanvas/canvas-native-ex"}]
   end
