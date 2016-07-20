@@ -1,7 +1,7 @@
 defmodule CanvasNative.Mixfile do
   use Mix.Project
 
-  @version "1.0.0"
+  @version "1.0.1"
   @github_url "https://github.com/usecanvas/canvas-native-ex"
 
   def project do
@@ -60,7 +60,8 @@ defmodule CanvasNative.Mixfile do
   defp deps do
     [{:poison, "~> 2.2.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
-     {:dialyxir, "~> 0.3.5", only: [:dev, :test]}]
+     {:dialyxir, "~> 0.3.5", only: [:dev, :test]},
+     {:ex_doc, ">= 0.0.0", only: [:dev]}]
   end
 
   defp aliases do
