@@ -16,6 +16,7 @@ defmodule CanvasNative.V0.TitleType do
 
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t}
   @type_name "doc-heading"
+  @markdown_pattern ~r/^# (?<content>.*)$/i
   @native_pattern Regex.compile! "^#{wrap @type_name}(?<content>.*)$", "i"
 
   use Type

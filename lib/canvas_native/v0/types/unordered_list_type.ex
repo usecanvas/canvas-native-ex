@@ -18,6 +18,12 @@ defmodule CanvasNative.V0.UnorderedListType do
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          level: pos_integer, marker: String.t}
   @type_name "unordered-list-item"
+
+  @markdown_pattern Regex.compile! """
+  ^\\ *(?<marker>[\\*\\-\\+])               # Marker
+  \\ (?<content>.*)$                        # Content
+  """, "ix"
+
   @native_pattern Regex.compile! """
   ^#{wrap(@type_name <> "-(?<level>\\d+)")} # Prefix
   \\ *(?<marker>[\\*\\-\\+])                # Marker

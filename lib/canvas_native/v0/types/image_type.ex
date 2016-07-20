@@ -18,6 +18,15 @@ defmodule CanvasNative.V0.ImageType do
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          url: String.t, metadata: %{String.t => String.t}}
   @type_name "image"
+
+  @extensions ~w(gif jpg jpeg png) |> Enum.join("|")
+
+  @markdown_pattern Regex.compile! """
+  ^(?:!\\[.*?\\]\\()?                                                # Opener
+  (?<url>https?:\\/\\/.+\\/.+\\.(?:#{@extensions})(?:\\?[^\\s)]+)?)  # URL
+  .*?\\)?$
+  """, "ix"
+
   @native_pattern Regex.compile! """
   ^#{wrap(@type_name <> "(?:-(?<metadata>.*?))?")} # Prefix
   (?<url>.*)$                                      # URL

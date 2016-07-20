@@ -18,6 +18,7 @@ defmodule CanvasNative.V0.LinkDefinitionType do
                          url: String.t}
   @type_name "link-definition"
   @native_pattern ~r/^(?<content>\[(?<label>\S+)\]: (?<url>.+))$/i
+  @markdown_pattern @native_pattern
 
   use Type
 end

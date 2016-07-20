@@ -18,6 +18,12 @@ defmodule CanvasNative.V0.ChecklistType do
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          level: pos_integer, checked: boolean}
   @type_name "checklist-item"
+
+  @markdown_pattern Regex.compile! """
+  ^\\ *[\\-\\+\\*]\\ \\[(?<check>[x\\ ])\\] # Checkmark
+  \\ (?<content>.*)$                       # Content
+  """, "ix"
+
   @native_pattern Regex.compile! """
   ^#{wrap("checklist-item" <> "-(?<level>\\d+)")} # Prefix
   \\ *[\\-\\+\\*]\\ \\[(?<check>[x\\ ])\\]        # Checkmark

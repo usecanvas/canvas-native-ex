@@ -12,6 +12,7 @@ defmodule CanvasNative.V0.ParagraphType do
 
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t}
   @native_pattern ~r/^(?<content>.*)$/i
+  @markdown_pattern @native_pattern
   @type_name "paragraph"
 
   use Type

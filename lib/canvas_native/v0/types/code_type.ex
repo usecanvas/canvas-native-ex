@@ -18,6 +18,7 @@ defmodule CanvasNative.V0.CodeType do
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          language: String.t}
   @type_name "code"
+  @markdown_pattern ~r/^(?<content>.*)$/i
   @native_pattern Regex.compile! """
   ^#{wrap(@type_name <> "(?:-(?<language>[^#{close}]*))?")} # Prefix
   (?<content>.*)$

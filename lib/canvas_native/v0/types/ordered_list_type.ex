@@ -18,6 +18,12 @@ defmodule CanvasNative.V0.OrderedListType do
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          level: pos_integer, number: integer}
   @type_name "ordered-list-item"
+
+  @markdown_pattern Regex.compile! """
+  ^\\ *(?<number>\\d+)\\.                    # Number
+  \\ (?<content>.*)$                         # Content
+  """, "ix"
+
   @native_pattern Regex.compile! """
   ^#{wrap(@type_name <> "-(?<level>\\d+)")} # Prefix
   \\ *(?<number>\\d+)\\.                    # Number
