@@ -4,11 +4,11 @@ defmodule CanvasNative.V0.CodeType do
   @moduledoc """
   A code line in a v0 canvas native document.
 
-  iex> source = wrap(type_name <> "-ruby") <> "class Foo"
-  iex> CodeType.match_native(source)
-  %CodeType{content: "class Foo",
-            source: wrap(type_name <> "-ruby") <> "class Foo",
-            type: type_name, language: "ruby"}
+      iex> source = wrap(type_name <> "-ruby") <> "class Foo"
+      iex> CodeType.match_native(source)
+      %CodeType{content: "class Foo",
+                source: wrap(type_name <> "-ruby") <> "class Foo",
+                type: type_name, language: "ruby"}
   """
 
   defstruct content: "", source: "", type: "", language: ""
