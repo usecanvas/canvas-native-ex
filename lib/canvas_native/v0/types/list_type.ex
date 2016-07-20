@@ -9,7 +9,7 @@ defmodule CanvasNative.V0.ListType do
     quote do
       use Type
 
-      def prefix(md) do
+      def prefix(md, _) do
         whitespace =
           ~r/^( *)/
           |> Regex.run(md)

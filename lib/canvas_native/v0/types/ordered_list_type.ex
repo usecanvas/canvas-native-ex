@@ -32,12 +32,12 @@ defmodule CanvasNative.V0.OrderedListType do
 
   use ListType
 
-  def match_markdown(md, _) do
+  def match_markdown(md, ctx) do
     if Regex.match?(@markdown_pattern, md) do
       md = ~r/^( *)\d+/ |> Regex.replace(md, "\\g{1}1") # Convert digit(s) to 1
 
       ~r/^ */
-      |> Regex.replace(md, prefix(md))
+      |> Regex.replace(md, prefix(md, ctx))
       |> match_native
     end
   end

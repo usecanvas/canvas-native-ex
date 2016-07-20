@@ -8,6 +8,25 @@ defmodule CanvasNative.V0.ImageTypeTest do
 
   doctest ImageType
 
+  describe ".match_markdown" do
+    test "matches a Markdown image into a struct" do
+      url = "https://example.com/foo.png"
+      md = "![title](#{url})"
+      source = wrap(type_name <> ~s(-{"url":"#{url}"}))
+      assert md |> match_markdown ==
+        %ImageType{content: "", source: source, type: type_name, url: url,
+                   metadata: %{"url" => url}}
+    end
+
+    test "matches a plain image URL into a struct" do
+      md = "https://example.com/foo.PNG"
+      source = wrap(type_name <> ~s(-{"url":"#{md}"}))
+      assert md |> match_markdown ==
+        %ImageType{content: "", source: source, type: type_name, url: md,
+                   metadata: %{"url" => md}}
+    end
+  end
+
   describe ".match_native" do
     test "matches a native image into a struct" do
       url = "https://example.com/foo.png"

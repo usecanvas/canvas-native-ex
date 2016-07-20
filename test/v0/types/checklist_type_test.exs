@@ -8,6 +8,14 @@ defmodule CanvasNative.V0.ChecklistTypeTest do
 
   doctest ChecklistType
 
+  test ".match_markdown matches a Markdown checklist into a struct" do
+    md = "    + [x] Foo"
+    source = "#{wrap(type_name <> "-2")}- [x] Foo"
+    assert md |> match_markdown ==
+      %ChecklistType{content: "Foo", source: source, type: type_name, level: 2,
+                     checked: true}
+  end
+
   test ".match_native matches a native checklist item into a struct" do
     source = "#{wrap(type_name <> "-1")}- [x] Foo"
     assert source |> match_native ==

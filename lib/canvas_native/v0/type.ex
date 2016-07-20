@@ -22,8 +22,8 @@ defmodule CanvasNative.V0.Type do
       @doc """
       Get the prefix for this type.
       """
-      @spec prefix(String.t) :: String.t
-      def prefix(_), do: ""
+      @spec prefix(String.t, map) :: String.t
+      def prefix(_, _), do: ""
 
       @doc """
       Match a Markdown string and return a struct or `nil`.
@@ -33,7 +33,7 @@ defmodule CanvasNative.V0.Type do
 
       def match_markdown(markdown, ctx) do
         if Regex.match?(@markdown_pattern, markdown) do
-          "#{prefix markdown}#{markdown}"
+          "#{prefix markdown, ctx}#{markdown}"
           |> match_native
         end
       end
@@ -60,7 +60,7 @@ defmodule CanvasNative.V0.Type do
       @spec after_match_native(%{source: String.t, type: String.t}) :: map
       defp after_match_native(map), do: map
 
-      defoverridable(prefix: 1)
+      defoverridable(prefix: 2)
       defoverridable(match_markdown: 2)
       defoverridable(match_native: 1)
       defoverridable(after_match_native: 1)

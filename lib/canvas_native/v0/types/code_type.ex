@@ -25,4 +25,26 @@ defmodule CanvasNative.V0.CodeType do
   """, "ix"
 
   use Type
+
+  def prefix(_, %{in_code: nil}), do: wrap(@type_name)
+  def prefix(_, %{in_code: lang}) do
+    wrap(@type_name <> "-#{lang}")
+  end
+
+  def match_markdown(md, ctx) do
+    if ctx[:in_code] != false do
+      super(md, ctx)
+    end
+  end
+
+  def after_match_native(map) do
+    map
+    |> Map.delete("language")
+    |> Map.put(:language, get_language(map["language"]))
+  end
+
+  # Get the language
+  @spec get_language(String.t) :: String.t | nil
+  defp get_language(""), do: nil
+  defp get_language(lang), do: lang
 end

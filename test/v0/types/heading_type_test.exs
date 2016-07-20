@@ -6,6 +6,12 @@ defmodule CanvasNative.V0.HeadingTypeTest do
 
   import HeadingType
 
+  test ".match_markdown matches a Markdown heading into a struct" do
+    result = match_markdown("## Foo")
+    assert result ==
+      %HeadingType{content: "Foo", source: "## Foo", type: "heading", level: 2}
+  end
+
   test ".match_native matches a native heading into a struct" do
     result = match_native("## Foo")
     assert result ==

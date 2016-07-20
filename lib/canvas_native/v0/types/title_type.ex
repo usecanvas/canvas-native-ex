@@ -21,7 +21,7 @@ defmodule CanvasNative.V0.TitleType do
 
   use Type
 
-  def prefix(_) do
+  def prefix(_, _) do
     wrap(@type_name)
   end
 
@@ -29,7 +29,7 @@ defmodule CanvasNative.V0.TitleType do
     if !ctx[:has_title] && Regex.match?(@markdown_pattern, markdown) do
       markdown
       |> String.slice(2..-1)
-      |> String.replace_prefix("", prefix(markdown))
+      |> String.replace_prefix("", prefix(markdown, ctx))
       |> match_native
     end
   end

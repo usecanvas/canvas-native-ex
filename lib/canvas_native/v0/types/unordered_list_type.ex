@@ -32,12 +32,12 @@ defmodule CanvasNative.V0.UnorderedListType do
 
   use ListType
 
-  def match_markdown(md, _) do
+  def match_markdown(md, ctx) do
     if Regex.match?(@markdown_pattern, md) do
       md = ~r/^( *)[\+\*]/ |> Regex.replace(md, "\\g{1}-") # Convert marker to -
 
       ~r/^ */
-      |> Regex.replace(md, prefix(md))
+      |> Regex.replace(md, prefix(md, ctx))
       |> match_native
     end
   end

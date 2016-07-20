@@ -33,6 +33,19 @@ defmodule CanvasNative.V0.MarkdownParser do
     {result, %{ctx|last_line_blank: true, has_title: true}}
   end
 
+  defp parse_line("```", {result, ctx = %{in_code: lang}})
+       when lang != false do
+    {result, %{ctx|last_line_blank: false, has_title: true, in_code: false}}
+  end
+
+  defp parse_line("```", {result, ctx = %{in_code: false}}) do
+    {result, %{ctx|last_line_blank: false, has_title: true, in_code: nil}}
+  end
+
+  defp parse_line("```" <> lang, {result, ctx}) do
+    {result, %{ctx|last_line_blank: false, has_title: true, in_code: lang}}
+  end
+
   defp parse_line(markdown, {result, ctx}) do
     line =
       Parser.parse_order

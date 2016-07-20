@@ -34,6 +34,18 @@ defmodule CanvasNative.V0.ImageType do
 
   use Type
 
+  def prefix(md, _) do
+    wrap(@type_name <> "-#{Poison.encode! %{url: md}}")
+  end
+
+  def match_markdown(md, ctx) do
+    if captures = Regex.named_captures(@markdown_pattern, md) do
+      captures["url"]
+      |> prefix(ctx)
+      |> match_native
+    end
+  end
+
   defp after_match_native(map) do
     metadata = get_metadata(map["metadata"])
     url = get_url(map["url"], metadata)

@@ -1,4 +1,4 @@
-alias CanvasNative.V0.Type
+alias CanvasNative.V0.ListType
 
 defmodule CanvasNative.V0.ChecklistType do
   @moduledoc """
@@ -30,7 +30,17 @@ defmodule CanvasNative.V0.ChecklistType do
   \\ (?<content>.*)$                              # Content
   """, "ix"
 
-  use Type
+  use ListType
+
+  def match_markdown(md, ctx) do
+    if Regex.match?(@markdown_pattern, md) do
+      md = ~r/^( *)[\+\*]/ |> Regex.replace(md, "\\g{1}-") # Convert marker to -
+
+      ~r/^ */
+      |> Regex.replace(md, prefix(md, ctx))
+      |> match_native
+    end
+  end
 
   defp after_match_native(map) do
     map

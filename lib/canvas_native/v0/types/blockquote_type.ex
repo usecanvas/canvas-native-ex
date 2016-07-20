@@ -21,4 +21,8 @@ defmodule CanvasNative.V0.BlockquoteType do
   @markdown_pattern ~r/^> (?<content>.*)$/
 
   use Type
+
+  defp prefix(_, _) do
+    wrap(@type_name)
+  end
 end
