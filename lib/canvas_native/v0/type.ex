@@ -1,4 +1,4 @@
-defmodule CanvasNative.Type do
+defmodule CanvasNative.V0.Type do
   @moduledoc """
   Describes a type of line in a canvas.
   """
@@ -9,7 +9,7 @@ defmodule CanvasNative.Type do
   defmacro __using__(_opts) do
     quote do
       # See above, re-add in 1.3.2
-      # @behaviour CanvasNative.Type
+      # @behaviour CanvasNative.V0.Type
 
       use Constructor
 

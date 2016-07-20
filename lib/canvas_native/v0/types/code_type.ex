@@ -1,4 +1,4 @@
-alias CanvasNative.Type
+alias CanvasNative.V0.Type
 
 defmodule CanvasNative.V0.CodeType do
   @moduledoc """
