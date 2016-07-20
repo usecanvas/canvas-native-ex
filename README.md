@@ -1,4 +1,4 @@
-# CanvasNative
+# CanvasNative [![CircleCI](https://circleci.com/gh/usecanvas/canvas-native-ex.svg?style=svg)](https://circleci.com/gh/usecanvas/canvas-native-ex)
 
 **TODO: Add description**
 
@@ -21,4 +21,3 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:canvas_native]]
     end
     ```
-
