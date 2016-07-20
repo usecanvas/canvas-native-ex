@@ -1,4 +1,6 @@
-# CanvasNative [![CircleCI](https://circleci.com/gh/usecanvas/canvas-native-ex.svg?style=svg)](https://circleci.com/gh/usecanvas/canvas-native-ex)
+# CanvasNative
+
+[![CircleCI](https://circleci.com/gh/usecanvas/canvas-native-ex.svg?style=svg)](https://circleci.com/gh/usecanvas/canvas-native-ex)
 
 Provides utilities for working with the Canvas Native document format in Elixir.
 
