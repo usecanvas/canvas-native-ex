@@ -33,6 +33,6 @@ defmodule CanvasNative.Mixfile do
   end
 
   defp aliases do
-    [test: ["test", "credo --strict", "dialyzer"]]
+    [test: ["test --trace", "credo --strict", "dialyzer"]]
   end
 end
