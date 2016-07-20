@@ -1,5 +1,6 @@
 alias CanvasNative.V0.{NativeParser, BlockquoteType, ChecklistType, CodeType,
-                       HeadingType, HorizontalRuleType, ParagraphType}
+                       HeadingType, HorizontalRuleType, ImageType,
+                       ParagraphType}
 
 defmodule CanvasNative.V0.NativeParserTest do
   use ExUnit.Case
@@ -10,6 +11,7 @@ defmodule CanvasNative.V0.NativeParserTest do
 
   test "parses a string of v0 into a map of v0 lines" do
     result = parse """
+    #{wrap "image"}https://example.com/foo.png
     - - -
     #{wrap "code-ruby"}class Foo
     #{wrap "checklist-item-2"}    - [x] Checklist
@@ -19,7 +21,8 @@ defmodule CanvasNative.V0.NativeParserTest do
     """
 
     assert match?(
-      [%HorizontalRuleType{content: "- - -"},
+      [%ImageType{content: "https://example.com/foo.png"},
+       %HorizontalRuleType{content: "- - -"},
        %CodeType{content: "class Foo"},
        %ChecklistType{content: "Checklist"},
        %BlockquoteType{content: "Blockquote"},

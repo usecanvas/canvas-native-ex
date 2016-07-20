@@ -8,6 +8,7 @@ defmodule CanvasNative.Mixfile do
      aliases: aliases,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     dialyzer: [plt_add_deps: true],
      deps: deps()]
   end
 
@@ -28,7 +29,8 @@ defmodule CanvasNative.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:credo, "~> 0.4", only: [:dev, :test]},
+    [{:poison, "~> 2.2.0"},
+     {:credo, "~> 0.4", only: [:dev, :test]},
      {:dialyxir, "~> 0.3.5", only: [:dev, :test]}]
   end
 
