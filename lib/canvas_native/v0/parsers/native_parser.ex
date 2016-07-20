@@ -1,5 +1,6 @@
 alias CanvasNative.V0.{BlockquoteType, ChecklistType, CodeType, HeadingType,
-                       HorizontalRuleType, ImageType, ParagraphType}
+                       HorizontalRuleType, ImageType, LinkDefinitionType,
+                       ParagraphType}
 
 defmodule CanvasNative.V0.NativeParser do
   @moduledoc """
@@ -26,7 +27,7 @@ defmodule CanvasNative.V0.NativeParser do
   @spec parse_line(String.t) :: map
   defp parse_line(line) do
     [ChecklistType, BlockquoteType, CodeType, HeadingType, HorizontalRuleType,
-     ImageType,ParagraphType]
+     ImageType, LinkDefinitionType, ParagraphType]
     |> Enum.reduce_while(nil, try_match(line))
   end
 
