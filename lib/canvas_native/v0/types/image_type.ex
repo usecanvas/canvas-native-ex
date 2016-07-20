@@ -31,9 +31,13 @@ defmodule CanvasNative.V0.ImageType do
     |> Map.delete("url")
   end
 
+  # Get the URL, preferring URL from metadata
+  @spec get_url(String.t, %{String.t => String.t}) :: String.t
   defp get_url(_, %{"url" => url}), do: url
   defp get_url(url, _), do: url
 
+  # Get the metadata, defaulting bad JSON to an empty map
+  @spec get_metadata(String.t) :: %{String.t => String.t}
   defp get_metadata(""), do: %{}
   defp get_metadata(binary) do
     case Poison.decode(binary) do
