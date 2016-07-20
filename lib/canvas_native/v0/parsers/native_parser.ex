@@ -1,7 +1,4 @@
-alias CanvasNative.V0.{BlockquoteType, ChecklistType, CodeType, HeadingType,
-                       HorizontalRuleType, ImageType, LinkDefinitionType,
-                       OrderedListType, ParagraphType, TitleType,
-                       UnorderedListType}
+alias CanvasNative.V0.Parser
 
 defmodule CanvasNative.V0.NativeParser do
   @moduledoc """
@@ -11,7 +8,7 @@ defmodule CanvasNative.V0.NativeParser do
       [%ParagraphType{content: "Foo", source: "Foo", type: "paragraph"}]
   """
 
-  @behaviour CanvasNative.Parser
+  @behaviour Parser
 
   @doc """
   Parse a string of v0 canvas native text into a list of canvas native lines.
@@ -27,9 +24,7 @@ defmodule CanvasNative.V0.NativeParser do
   # Parse a single v0 native line into a line map.
   @spec parse_line(String.t) :: map
   defp parse_line(line) do
-    [ChecklistType, BlockquoteType, CodeType, TitleType, HeadingType,
-     HorizontalRuleType, ImageType, LinkDefinitionType, OrderedListType,
-     UnorderedListType, ParagraphType]
+    Parser.parse_order
     |> Enum.reduce_while(nil, try_match(line))
   end
 
