@@ -20,8 +20,8 @@ defmodule CanvasNative.V0.UnorderedListType do
   @type_name "unordered-list-item"
 
   @markdown_pattern Regex.compile! """
-  ^\\ *(?<marker>[\\*\\-\\+])               # Marker
-  \\ (?<content>.*)$                        # Content
+  ^\\ *(?<marker>[\\*\\-\\+]) # Marker
+  \\ (?<content>.*)$          # Content
   """, "ix"
 
   @native_pattern Regex.compile! """

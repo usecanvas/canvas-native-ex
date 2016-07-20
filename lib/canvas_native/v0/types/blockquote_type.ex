@@ -18,7 +18,7 @@ defmodule CanvasNative.V0.BlockquoteType do
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t}
   @type_name "blockquote-item"
   @native_pattern Regex.compile! "^#{wrap @type_name}> (?<content>.*)$", "i"
-  @markdown_pattern ~r/^> (?<content>.*)$/i
+  @markdown_pattern ~r/^> (?<content>.*)$/
 
   use Type
 end

@@ -20,8 +20,8 @@ defmodule CanvasNative.V0.OrderedListType do
   @type_name "ordered-list-item"
 
   @markdown_pattern Regex.compile! """
-  ^\\ *(?<number>\\d+)\\.                    # Number
-  \\ (?<content>.*)$                         # Content
+  ^\\ *(?<number>\\d+)\\. # Number
+  \\ (?<content>.*)$      # Content
   """, "ix"
 
   @native_pattern Regex.compile! """

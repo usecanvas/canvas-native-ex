@@ -21,7 +21,7 @@ defmodule CanvasNative.V0.ChecklistType do
 
   @markdown_pattern Regex.compile! """
   ^\\ *[\\-\\+\\*]\\ \\[(?<check>[x\\ ])\\] # Checkmark
-  \\ (?<content>.*)$                       # Content
+  \\ (?<content>.*)$                        # Content
   """, "ix"
 
   @native_pattern Regex.compile! """
