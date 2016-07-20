@@ -1,15 +1,24 @@
 defmodule CanvasNative.Mixfile do
   use Mix.Project
 
+  @version "1.0.0"
+  @github_url "https://github.com/usecanvas/canvas-native-ex"
+
   def project do
     [app: :canvas_native,
-     version: "0.1.0",
+     description: description,
+     version: @version,
+     package: package,
+     name: "CanvasNative",
      elixir: "~> 1.3",
      aliases: aliases,
+     homepage_url: @github_url,
+     source_url: @github_url,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      dialyzer: [plt_add_deps: true],
-     deps: deps()]
+     docs: docs,
+     deps: deps]
   end
 
   # Configuration for the OTP application
@@ -17,6 +26,26 @@ defmodule CanvasNative.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [applications: [:logger]]
+  end
+
+  defp description do
+    """
+    CanvasNative is a format used to describe documents on the canvas platform.
+    This library provides modules for parsing and formatting the CanvasNative
+    format.
+    """
+  end
+
+  defp package do
+    [licenses: "MIT",
+     maintainers: ["Jonathan Clem <jonathan@usecanvas.com>"],
+     links: %{"GitHub" => "https://github.com/usecanvas/canvas-native-ex"}]
+  end
+
+  defp docs do
+    [extras: ["README.md", "LICENSE.md"],
+     main: "CanvasNative",
+     source_ref: "v#{@version}"]
   end
 
   # Dependencies can be Hex packages:
