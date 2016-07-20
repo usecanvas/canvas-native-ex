@@ -3,6 +3,12 @@ alias CanvasNative.Type
 defmodule CanvasNative.V0.ImageType do
   @moduledoc """
   An image in a v0 canvas native document.
+
+      iex> source = wrap("image") <> "https://example.com"
+      iex> match_native(source)
+      %ImageType{content: "https://example.com", url: "https://example.com",
+                 metadata: %{}, type: "image",
+                 source: wrap("image") <> "https://example.com"}
   """
 
   defstruct content: "", source: "", type: "", url: "", metadata: %{}
