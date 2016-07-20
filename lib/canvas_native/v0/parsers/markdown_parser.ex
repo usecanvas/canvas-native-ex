@@ -10,6 +10,10 @@ defmodule CanvasNative.V0.MarkdownParser do
 
   @behaviour Parser
 
+  @type context :: %{has_title: true | false,
+                     in_code: false | nil | String.t,
+                     last_line_blank: true | false}
+
   @doc """
   Parse a Markdown string into a list of canvas native lines.
   """
@@ -27,7 +31,7 @@ defmodule CanvasNative.V0.MarkdownParser do
   end
 
   # Parse a single markdown line into a map.
-  @spec parse_line(String.t, {[map], map}) :: {[map], map}
+  @spec parse_line(String.t, {[map], context}) :: {[map], context}
   defp parse_line("",
                   {result, ctx = %{in_code: false, last_line_blank: false}}) do
     {result, %{ctx|last_line_blank: true, has_title: true}}

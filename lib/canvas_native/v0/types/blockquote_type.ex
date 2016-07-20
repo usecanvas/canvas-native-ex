@@ -20,9 +20,5 @@ defmodule CanvasNative.V0.BlockquoteType do
   @native_pattern Regex.compile! "^#{wrap @type_name}> (?<content>.*)$", "i"
   @markdown_pattern ~r/^> (?<content>.*)$/
 
-  use Type
-
-  defp prefix(_, _) do
-    wrap(@type_name)
-  end
+  use Type, has_prefix: true
 end

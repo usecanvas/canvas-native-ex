@@ -24,12 +24,7 @@ defmodule CanvasNative.V0.CodeType do
   (?<content>.*)$
   """, "ix"
 
-  use Type
-
-  def prefix(_, %{in_code: nil}), do: wrap(@type_name)
-  def prefix(_, %{in_code: lang}) do
-    wrap(@type_name <> "-#{lang}")
-  end
+  use Type, has_prefix: true
 
   def match_markdown(md, ctx) do
     if ctx[:in_code] != false do
@@ -47,4 +42,9 @@ defmodule CanvasNative.V0.CodeType do
   @spec get_language(String.t) :: String.t | nil
   defp get_language(""), do: nil
   defp get_language(lang), do: lang
+
+  defp prefix(_, %{in_code: nil}), do: wrap(@type_name)
+  defp prefix(_, %{in_code: lang}) when is_binary(lang) do
+    wrap(@type_name <> "-#{lang}")
+  end
 end

@@ -7,9 +7,9 @@ defmodule CanvasNative.V0.ListType do
 
   defmacro __using__(_opts) do
     quote do
-      use Type
+      use Type, has_prefix: true
 
-      def prefix(md, _) do
+      defp prefix(md, _) do
         whitespace =
           ~r/^( *)/
           |> Regex.run(md)

@@ -19,11 +19,7 @@ defmodule CanvasNative.V0.TitleType do
   @markdown_pattern ~r/^# (?<content>.*)$/
   @native_pattern Regex.compile! "^#{wrap @type_name}(?<content>.*)$", "i"
 
-  use Type
-
-  def prefix(_, _) do
-    wrap(@type_name)
-  end
+  use Type, has_prefix: true
 
   def match_markdown(markdown, ctx) do
     if !ctx[:has_title] && Regex.match?(@markdown_pattern, markdown) do

@@ -32,11 +32,7 @@ defmodule CanvasNative.V0.ImageType do
   (?<url>.*)$                                      # URL
   """, "ix"
 
-  use Type
-
-  def prefix(md, _) do
-    wrap(@type_name <> "-#{Poison.encode! %{url: md}}")
-  end
+  use Type, has_prefix: true
 
   def match_markdown(md, ctx) do
     if captures = Regex.named_captures(@markdown_pattern, md) do
@@ -71,5 +67,9 @@ defmodule CanvasNative.V0.ImageType do
       {:ok, map} -> map
       _ -> %{}
     end
+  end
+
+  defp prefix(md, _) do
+    wrap(@type_name <> "-#{Poison.encode! %{url: md}}")
   end
 end

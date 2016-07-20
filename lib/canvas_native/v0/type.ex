@@ -1,3 +1,5 @@
+alias CanvasNative.V0.MarkdownParser
+
 defmodule CanvasNative.V0.Type do
   @moduledoc """
   Describes a type of line in a canvas.
@@ -6,7 +8,7 @@ defmodule CanvasNative.V0.Type do
   # Re-add in Elixir 1.3.2
   # @callback match_native(String.t) :: struct | nil
 
-  defmacro __using__(_opts) do
+  defmacro __using__(opts) do
     quote do
       # See above, re-add in 1.3.2
       # @behaviour CanvasNative.V0.Type
@@ -20,16 +22,11 @@ defmodule CanvasNative.V0.Type do
       def type_name, do: @type_name
 
       @doc """
-      Get the prefix for this type.
-      """
-      @spec prefix(String.t, map) :: String.t
-      def prefix(_, _), do: ""
-
-      @doc """
       Match a Markdown string and return a struct or `nil`.
       """
-      @spec match_markdown(String.t, map) :: t | nil
-      def match_markdown(markdown, ctx \\ %{})
+      @spec match_markdown(String.t, MarkdownParser.context) :: t | nil
+      def match_markdown(markdown,
+        ctx \\ %{has_title: false, in_code: false, last_line_blank: false})
 
       def match_markdown(markdown, ctx) do
         if Regex.match?(@markdown_pattern, markdown) do
@@ -59,6 +56,16 @@ defmodule CanvasNative.V0.Type do
       # Manipulate the match map before it is turned into a struct
       @spec after_match_native(%{source: String.t, type: String.t}) :: map
       defp after_match_native(map), do: map
+
+      # Get the prefix for this type.
+      @spec prefix(String.t, MarkdownParser.context) :: String.t
+      if unquote(opts[:has_prefix]) do
+        defp prefix(_, _) do
+          wrap(@type_name)
+        end
+      else
+        defp prefix(_, _), do: ""
+      end
 
       defoverridable(prefix: 2)
       defoverridable(match_markdown: 2)
