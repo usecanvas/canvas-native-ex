@@ -28,8 +28,10 @@ defmodule CanvasNative.V0.Type do
       @doc """
       Match a Markdown string and return a struct or `nil`.
       """
-      @spec match_markdown(String.t) :: t | nil
-      def match_markdown(markdown) do
+      @spec match_markdown(String.t, map) :: t | nil
+      def match_markdown(markdown, ctx \\ %{})
+
+      def match_markdown(markdown, ctx) do
         if Regex.match?(@markdown_pattern, markdown) do
           "#{prefix markdown}#{markdown}"
           |> match_native
@@ -59,7 +61,7 @@ defmodule CanvasNative.V0.Type do
       defp after_match_native(map), do: map
 
       defoverridable(prefix: 1)
-      defoverridable(match_markdown: 1)
+      defoverridable(match_markdown: 2)
       defoverridable(match_native: 1)
       defoverridable(after_match_native: 1)
     end

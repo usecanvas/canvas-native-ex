@@ -15,27 +15,30 @@ defmodule CanvasNative.V0.MarkdownParser do
   """
   @spec parse(String.t) :: list(map)
   def parse(markdown) do
+    context = %{
+      has_title: false, in_code: false, last_line_blank: false
+    }
+
     markdown
     |> String.split("\n")
-    |> Stream.map(&parse_line/1)
-    |> Enum.to_list
+    |> Enum.reduce({[], context}, &parse_line/2)
+    |> elem(0)
+    |> Enum.reverse
   end
 
   # Parse a single markdown line into a map.
-  @spec parse_line(String.t) :: map
-  defp parse_line(line) do
-    Parser.parse_order
-    |> Enum.reduce_while(nil, try_match(line))
+  @spec parse_line(String.t, {[map], map}) :: {[map], map}
+  defp parse_line("",
+                  {result, ctx = %{in_code: false, last_line_blank: false}}) do
+    {result, %{ctx|last_line_blank: true, has_title: true}}
   end
 
-  # Return a function that tries to match against a type module for `line`.
-  @spec try_match(String.t) :: ((module, nil) -> {:halt, map} | {:cont, nil})
-  defp try_match(line) do
-    fn (type, nil) ->
-      case type.match_markdown(line) do
-        result when not is_nil(result) -> {:halt, result}
-        nil -> {:cont, nil}
-      end
-    end
+  defp parse_line(markdown, {result, ctx}) do
+    line =
+      Parser.parse_order
+      |> Enum.reduce_while(nil,
+                           Parser.try_match([markdown, ctx], :match_markdown))
+
+    {[line|result], %{ctx|last_line_blank: markdown == "", has_title: true}}
   end
 end

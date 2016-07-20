@@ -8,6 +8,14 @@ defmodule CanvasNative.V0.OrderedListTypeTest do
 
   doctest OrderedListType
 
+  test ".match_markdown matches a Markdown ordered list item into a struct" do
+    source = "#{wrap(type_name <> "-2")}1. Foo"
+    md = "   4. Foo"
+    assert md |> match_markdown ==
+      %OrderedListType{content: "Foo", source: source, type: type_name, level: 2,
+                     number: 1}
+  end
+
   test ".match_native matches a native ordered list item into a struct" do
     source = "#{wrap(type_name <> "-1")}4. Foo"
     assert source |> match_native ==

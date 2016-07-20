@@ -25,17 +25,6 @@ defmodule CanvasNative.V0.NativeParser do
   @spec parse_line(String.t) :: map
   defp parse_line(line) do
     Parser.parse_order
-    |> Enum.reduce_while(nil, try_match(line))
-  end
-
-  # Return a function that tries to match against a type module for `line`.
-  @spec try_match(String.t) :: ((module, nil) -> {:halt, map} | {:cont, nil})
-  defp try_match(line) do
-    fn (type, nil) ->
-      case type.match_native(line) do
-        result when not is_nil(result) -> {:halt, result}
-        nil -> {:cont, nil}
-      end
-    end
+    |> Enum.reduce_while(nil, Parser.try_match([line], :match_native))
   end
 end
