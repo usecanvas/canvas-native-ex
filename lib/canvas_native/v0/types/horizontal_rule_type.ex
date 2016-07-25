@@ -4,9 +4,9 @@ defmodule CanvasNative.V0.HorizontalRuleType do
   @moduledoc """
   A horizontal rule in a canvas native v0 document.
 
-  iex> HorizontalRuleType.match_native("- - -")
-  %HorizontalRuleType{content: "- - -", source: "- - -",
-                      type: "horizontal-rule"}
+      iex> HorizontalRuleType.match_native("- - -")
+      %HorizontalRuleType{content: "- - -", source: "- - -",
+                          type: "horizontal-rule"}
   """
 
   defstruct content: "", source: "", type: ""
