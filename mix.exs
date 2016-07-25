@@ -1,7 +1,7 @@
 defmodule CanvasNative.Mixfile do
   use Mix.Project
 
-  @version "1.1.0"
+  @version "1.1.1"
   @github_url "https://github.com/usecanvas/canvas-native-ex"
 
   def project do

@@ -6,6 +6,8 @@ defmodule CanvasNative.V0.JSONFormatterTest do
   import JSONFormatter
   import MarkdownParser
 
+  doctest JSONFormatter
+
   test ".format formats lines as JSON" do
     source = parse """
     # Title
