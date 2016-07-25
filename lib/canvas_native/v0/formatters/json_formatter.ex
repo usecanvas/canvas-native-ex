@@ -27,7 +27,8 @@ defmodule CanvasNative.V0.JSONFormatter do
           type: "title",
           text: "Title"
         }, %{
-          type: "paragraph", text: "Paragraph"
+          type: "paragraph",
+          text: "Paragraph"
         }]
       }
   """
