@@ -7,6 +7,11 @@ defmodule CanvasNative.V0.HorizontalRuleTypeTest do
 
   doctest HorizontalRuleType
 
+  test ".as_json formats the line as JSON" do
+    line = "- - - -" |> match_markdown
+    assert as_json(line) == %{type: "horizontal-rule", text: ""}
+  end
+
   test ".match_markdown matches a Markdown horizontal rule into a struct" do
     assert "- - -" |> match_markdown ==
       %HorizontalRuleType{content: "- - -", source: "- - -", type: type_name}

@@ -19,6 +19,14 @@ defmodule CanvasNative.V0.HeadingType do
 
   use Type
 
+  def as_json(struct) do
+    %{
+      type: @type_name,
+      text: struct.content,
+      meta: %{level: struct.level}
+    }
+  end
+
   defp after_match_native(map) do
     map
     |> Map.delete("hashes")

@@ -21,6 +21,8 @@ defmodule CanvasNative.V0.TitleType do
 
   use Type, has_prefix: true
 
+  def as_json(struct), do: %{type: "title", text: struct.content}
+
   def match_markdown(markdown, ctx) do
     if !ctx[:has_title] && Regex.match?(@markdown_pattern, markdown) do
       markdown

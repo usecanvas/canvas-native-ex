@@ -32,6 +32,12 @@ defmodule CanvasNative.V0.ChecklistType do
 
   use ListType
 
+  def as_json(struct) do
+    struct
+    |> super
+    |> put_in([:meta, :checked], struct.checked)
+  end
+
   def match_markdown(md, ctx) do
     if Regex.match?(@markdown_pattern, md) do
       md = ~r/^( *)[\+\*]/ |> Regex.replace(md, "\\g{1}-") # Convert marker to -

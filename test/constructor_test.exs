@@ -1,5 +1,5 @@
 defmodule ConstructorTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest Constructor
 
   defmodule MyModule do

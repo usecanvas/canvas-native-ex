@@ -21,4 +21,12 @@ defmodule CanvasNative.V0.LinkDefinitionType do
   @markdown_pattern @native_pattern
 
   use Type
+
+  def as_json(struct) do
+    %{
+      type: @type_name,
+      text: "",
+      meta: %{label: struct.label, url: struct.url}
+    }
+  end
 end

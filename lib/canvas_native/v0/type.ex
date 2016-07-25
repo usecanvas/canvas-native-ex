@@ -53,6 +53,14 @@ defmodule CanvasNative.V0.Type do
         end
       end
 
+      @doc """
+      Format a line as a JSON object.
+      """
+      @spec as_json(t) :: map
+      def as_json(struct) do
+        %{type: @type_name, text: struct.content}
+      end
+
       # Manipulate the match map before it is turned into a struct
       @spec after_match_native(%{source: String.t, type: String.t}) :: map
       defp after_match_native(map), do: map
@@ -67,6 +75,7 @@ defmodule CanvasNative.V0.Type do
         defp prefix(_, _), do: ""
       end
 
+      defoverridable(as_json: 1)
       defoverridable(prefix: 2)
       defoverridable(match_markdown: 2)
       defoverridable(match_native: 1)

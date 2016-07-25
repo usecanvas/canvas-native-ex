@@ -8,6 +8,11 @@ defmodule CanvasNative.V0.BlockquoteTypeTest do
 
   doctest BlockquoteType
 
+  test ".as_json formats the struct as JSON" do
+    line = "> Foo" |> match_markdown
+    assert as_json(line) == %{type: "blockquote-item", text: "Foo"}
+  end
+
   test ".match_markdown matches a Markdown blockquote into a struct" do
     md = "> Foo"
     source = "#{wrap type_name}#{md}"

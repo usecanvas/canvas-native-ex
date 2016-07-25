@@ -34,6 +34,10 @@ defmodule CanvasNative.V0.ImageType do
 
   use Type, has_prefix: true
 
+  def as_json(struct) do
+    %{type: @type_name, text: "", meta: %{url: struct.url}}
+  end
+
   def match_markdown(md, ctx) do
     if captures = Regex.named_captures(@markdown_pattern, md) do
       captures["url"]

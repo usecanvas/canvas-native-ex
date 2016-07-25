@@ -17,4 +17,6 @@ defmodule CanvasNative.V0.HorizontalRuleType do
   @markdown_pattern @native_pattern
 
   use Type
+
+  def as_json(_struct), do: %{type: @type_name, text: ""}
 end

@@ -6,6 +6,16 @@ defmodule CanvasNative.V0.LinkDefinitionTypeTest do
   import LinkDefinitionType
   doctest LinkDefinitionType
 
+  test ".as_json formats the line as JSON" do
+    label = "example"
+    url = "https://example.com"
+    line = "[#{label}]: #{url}" |> match_markdown
+    assert as_json(line) == %{
+      type: "link-definition",
+      text: "",
+      meta: %{label: label, url: url}}
+  end
+
   test ".match_markdown matches a Markdown link definition into a struct" do
     md = "[example]: https://example.com"
     assert md |> match_markdown ==

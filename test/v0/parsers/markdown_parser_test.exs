@@ -4,7 +4,7 @@ alias CanvasNative.V0.{MarkdownParser, BlockquoteType, ChecklistType, CodeType,
                        TitleType, UnorderedListType}
 
 defmodule CanvasNative.V0.MarkdownParserTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest MarkdownParser
 
   import MarkdownParser

@@ -8,6 +8,14 @@ defmodule CanvasNative.V0.OrderedListTypeTest do
 
   doctest OrderedListType
 
+  test ".as_json formats the line as JSON" do
+    line = "1. Foo" |> match_markdown
+    assert as_json(line) == %{
+      type: "ordered-list-item",
+      text: "Foo",
+      meta: %{level: 0}}
+  end
+
   test ".match_markdown matches a Markdown ordered list item into a struct" do
     source = "#{wrap(type_name <> "-2")}1. Foo"
     md = "   4. Foo"

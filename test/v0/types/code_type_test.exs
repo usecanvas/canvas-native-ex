@@ -8,6 +8,14 @@ defmodule CanvasNative.V0.CodeTypeTest do
 
   doctest CodeType
 
+  test ".as_json formats the line as JSON" do
+    line = "defmodule Foo do" |> match_markdown(%{in_code: "elixir"})
+    assert as_json(line) == %{
+      type: "code",
+      text: "defmodule Foo do",
+      meta: %{language: "elixir"}}
+  end
+
   describe ".match_markdown" do
     test "matches Markdown code into a struct when in a code block" do
       source = "#{wrap(type_name <> "-ruby")}class Foo"

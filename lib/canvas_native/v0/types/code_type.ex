@@ -26,6 +26,14 @@ defmodule CanvasNative.V0.CodeType do
 
   use Type, has_prefix: true
 
+  def as_json(struct) do
+    %{
+      type: @type_name,
+      text: struct.content,
+      meta: %{language: struct.language}
+    }
+  end
+
   def match_markdown(md, ctx) do
     if ctx[:in_code] != false do
       super(md, ctx)

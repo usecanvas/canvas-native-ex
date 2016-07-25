@@ -8,6 +8,14 @@ defmodule CanvasNative.V0.ChecklistTypeTest do
 
   doctest ChecklistType
 
+  test ".as_json formats the line as JSON" do
+    line = "  - [x] Foo" |> match_markdown
+    assert as_json(line) == %{
+      type: "checklist-item",
+      text: "Foo",
+      meta: %{level: 1, checked: true}}
+  end
+
   test ".match_markdown matches a Markdown checklist into a struct" do
     md = "    + [x] Foo"
     source = "#{wrap(type_name <> "-2")}- [x] Foo"

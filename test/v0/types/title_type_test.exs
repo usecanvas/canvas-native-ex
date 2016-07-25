@@ -8,6 +8,11 @@ defmodule CanvasNative.V0.TitleTypeTest do
 
   doctest TitleType
 
+  test ".as_json returns a proper type and text" do
+    line = "# Foo" |> match_markdown(%{has_title: false})
+    assert TitleType.as_json(line) == %{type: "title", text: "Foo"}
+  end
+
   describe ".match_markdown" do
     test "matches a Markdown title into a struct with no title in context" do
       source = "#{wrap type_name}Foo"

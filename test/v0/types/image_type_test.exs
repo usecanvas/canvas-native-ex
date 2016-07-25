@@ -8,6 +8,12 @@ defmodule CanvasNative.V0.ImageTypeTest do
 
   doctest ImageType
 
+  test ".as_json formats the line as JSON" do
+    url = "https://example.com/foo.png"
+    line = url |> match_markdown
+    assert as_json(line) == %{type: "image", text: "", meta: %{url: url}}
+  end
+
   describe ".match_markdown" do
     test "matches a Markdown image into a struct" do
       url = "https://example.com/foo.png"
