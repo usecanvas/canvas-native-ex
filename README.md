@@ -1,6 +1,9 @@
 # CanvasNative
 
-[![CircleCI](https://circleci.com/gh/usecanvas/canvas-native-ex.svg?style=svg)](https://circleci.com/gh/usecanvas/canvas-native-ex)
+[![Hex.pm](https://img.shields.io/hexpm/v/canvas_native.svg?maxAge=2592000)](https://hex.pm/packages/canvas_native)
+[![Docs](https://img.shields.io/badge/api-docs-yellow.svg?maxAge=2592000)](https://hexdocs.pm/canvas_native)
+[![License](https://img.shields.io/github/license/usecanvas/canvas-native-ex.svg?maxAge=2592000)](https://github.com/usecanvas/canvas-native-ex/blob/master/LICENSE.md)
+[![CircleCI](https://img.shields.io/circleci/project/usecanvas/canvas-native-ex.svg?maxAge=2592000)](https://circleci.com/gh/usecanvas/canvas-native-ex)
 
 Provides utilities for working with the Canvas Native document format in Elixir.
 
