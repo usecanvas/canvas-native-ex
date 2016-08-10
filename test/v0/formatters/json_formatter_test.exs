@@ -53,15 +53,15 @@ defmodule CanvasNative.V0.JSONFormatterTest do
         text: "Heading",
         meta: %{level: 2}
       }, %{
-        type: "unordered-list-item",
+        type: "unordered-list",
         text: "ULLI",
         meta: %{level: 0}
       }, %{
-        type: "unordered-list-item",
+        type: "unordered-list",
         text: "ULLI",
         meta: %{level: 1}
       }, %{
-        type: "ordered-list-item",
+        type: "ordered-list",
         text: "OLLI",
         meta: %{level: 0}
       }, %{
@@ -79,11 +79,11 @@ defmodule CanvasNative.V0.JSONFormatterTest do
         type: "horizontal-rule",
         text: ""
       }, %{
-        type: "checklist-item",
+        type: "checklist",
         text: "Foo",
         meta: %{level: 0, checked: false}
       }, %{
-        type: "checklist-item",
+        type: "checklist",
         text: "Bar",
         meta: %{level: 1, checked: true}
       }, %{

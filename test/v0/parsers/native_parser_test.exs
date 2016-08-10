@@ -17,9 +17,9 @@ defmodule CanvasNative.V0.NativeParserTest do
     #{wrap "image"}https://example.com/foo.png
     #{wrap "horizontal-rule"}
     #{wrap "code-ruby"}class Foo
-    #{wrap "checklist-item-2"}    - [x] Checklist
-    #{wrap "ordered-list-item-2"}2. Foo
-    #{wrap "unordered-list-item-3"}+ Foo
+    #{wrap "checklist-2"}    - [x] Checklist
+    #{wrap "ordered-list-2"}2. Foo
+    #{wrap "unordered-list-3"}+ Foo
     #{wrap "blockquote-item"}> Blockquote
     # Heading
     Paragraph\

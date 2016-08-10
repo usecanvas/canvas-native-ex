@@ -7,7 +7,7 @@ defmodule CanvasNative.V0.UnorderedListType do
       iex> source = wrap(type_name <> "-1") <> "* ULLI"
       iex> UnorderedListType.match_native(source)
       %UnorderedListType{content: "ULLI",
-                      source: wrap("unordered-list-item-1") <> "* ULLI",
+                      source: wrap("unordered-list-1") <> "* ULLI",
                       type: type_name, level: 1, marker: "*"}
   """
 
@@ -17,7 +17,7 @@ defmodule CanvasNative.V0.UnorderedListType do
 
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          level: pos_integer, marker: String.t}
-  @type_name "unordered-list-item"
+  @type_name "unordered-list"
 
   @markdown_pattern Regex.compile! """
   ^\\ *(?<marker>[\\*\\-\\+]) # Marker

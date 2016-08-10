@@ -20,7 +20,7 @@ defmodule CanvasNative.V0.HorizontalRuleType do
 
   use Type, has_prefix: true
 
-  def as_json(struct) do
+  def as_json(_struct) do
     %{type: @type_name, text: ""}
   end
 

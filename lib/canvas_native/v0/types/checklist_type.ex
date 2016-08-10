@@ -7,7 +7,7 @@ defmodule CanvasNative.V0.ChecklistType do
       iex> source = wrap(type_name <> "-1") <> "- [ ] Checklist"
       iex> ChecklistType.match_native(source)
       %ChecklistType{content: "Checklist",
-                      source: wrap("checklist-item-1") <> "- [ ] Checklist",
+                      source: wrap("checklist-1") <> "- [ ] Checklist",
                       type: type_name, checked: false, level: 1}
   """
 
@@ -17,7 +17,7 @@ defmodule CanvasNative.V0.ChecklistType do
 
   @type t :: %__MODULE__{content: String.t, source: String.t, type: String.t,
                          level: pos_integer, checked: boolean}
-  @type_name "checklist-item"
+  @type_name "checklist"
 
   @markdown_pattern Regex.compile! """
   ^\\ *[\\-\\+\\*]\\ \\[(?<check>[x\\ ])\\] # Checkmark
@@ -25,7 +25,7 @@ defmodule CanvasNative.V0.ChecklistType do
   """, "ix"
 
   @native_pattern Regex.compile! """
-  ^#{wrap("checklist-item" <> "-(?<level>\\d+)")} # Prefix
+  ^#{wrap(@type_name <> "-(?<level>\\d+)")} # Prefix
   \\ *[\\-\\+\\*]\\ \\[(?<check>[x\\ ])\\]        # Checkmark
   \\ (?<content>.*)$                              # Content
   """, "ix"
