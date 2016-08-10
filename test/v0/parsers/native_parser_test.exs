@@ -15,7 +15,7 @@ defmodule CanvasNative.V0.NativeParserTest do
     #{wrap "doc-heading"}Title
     [example]: https://example.com
     #{wrap "image"}https://example.com/foo.png
-    - - -
+    #{wrap "horizontal-rule"}
     #{wrap "code-ruby"}class Foo
     #{wrap "checklist-item-2"}    - [x] Checklist
     #{wrap "ordered-list-item-2"}2. Foo
